@@ -18,11 +18,11 @@ export default function MoviesList() {
     return (
         <main>
             <h2 className='catalogue-title'>Movies Catalogue</h2>
-            <div className="container debug">
+            <div className="container mb-5">
                 <div className="row">
                     {movies.map(movie => 
                         (<MovieCard 
-                            title={movie.title} image={movie.image} director={movie.director} year={movie.release_year}
+                            title={movie.title} image={movie.image} director={movie.director} avg_rating={movie.avg_rating} year={movie.release_year}
                         key={movie.id}/>
                     ))}
                     
