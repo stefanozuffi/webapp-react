@@ -10,6 +10,7 @@ function App() {
             <Routes>
                 <Route element={<DefaultLayout/>}>
                     <Route path='/' element={<HomePage/>}/>
+                    <Route path="/movies" element/>
                 </Route>
 
             </Routes>

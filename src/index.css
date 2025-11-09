@@ -7,6 +7,18 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: 'Black Ops One', system-ui;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  width: 80%;
+}
+
 /* HEADER */
 
 .header-ctn {
@@ -22,4 +34,32 @@
 
 .logo {
   width: 15rem;
+}
+
+.header-ctn a {
+  font-family: 'Black Ops One', system-ui;
+  text-decoration: none;
+  color: rgb(195, 60, 69);
+}
+
+
+/* HOMEPAGE */
+.home-comp {
+  margin: 3em auto;
+}
+/* HomePage Jumbo */
+.jumbo-ctn {
+  border: 5px solid rgb(203, 46, 63);
+  background-color: rgba(43, 173, 31, 0.693);
+}
+
+.jumbo-ctn p, h3{
+  text-align: center;
+  color: rgb(27, 27, 27);
+}
+
+.jumbo-img {
+  width: 15rem;
+  background-color: rgb(27, 27, 27);
+  border-radius: 20px;
 }

@@ -9,7 +9,7 @@ export default function AppHeader() {
                 </div>
 
                 <div className="navbar-ctn">
-                    <nav className='d-flex gap-4'>
+                    <nav className='d-flex gap-4 fs-5'>
                         <a href="#">Home</a>
                         <a href="#">Catalogue</a>
                         <a href="#">Admin</a>
