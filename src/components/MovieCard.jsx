@@ -1,11 +1,8 @@
-import { roundToHalf } from "../assets/utils/functions"
+
+import Rating from "./Rating"
 
 
 export default function MovieCard({title, image, avg_rating=4, director, year}) {
-    const roundedRating = roundToHalf(avg_rating)
-    const full_point = Math.floor(roundedRating)
-    const half_point = roundedRating % 1 !== 0
-    const empty_point = 5 - Math.ceil(roundedRating)
 
     return(
     
@@ -19,13 +16,8 @@ export default function MovieCard({title, image, avg_rating=4, director, year}) 
                         <div className="card-img-ctn">
                                 <img className='card-image' src={`/movies_cover/${image}`} alt="placeholder img"/>
                         </div>
-                        <div className="average-rating d-flex flex-column justify-content-around ms-2">
-
-                                {Array.from({length: full_point}, (_,i) => <i key={i} className="bi bi-circle-fill"></i> )}
-                                {half_point && <i className="bi bi-circle-half"></i>}
-                                {Array.from({length: empty_point}, (_,i) => <i key={i} className="bi bi-circle"></i> )}
                         
-                        </div>
+                        <Rating rating={avg_rating}/>
                     </div>
             
                     <div className="card-info">
