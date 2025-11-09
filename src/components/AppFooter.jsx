@@ -19,7 +19,7 @@ export default function AppFooter() {
         <div className="row">
           <div className="col">
             <div className="logo">
-                <i class="bi bi-shadows"></i>
+                <i className="bi bi-shadows"></i>
             </div>
 
             <p>&copy; 2025 CinePedia</p>

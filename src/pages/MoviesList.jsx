@@ -1,7 +1,33 @@
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import jumbo_logo from '../assets/images/jumbo-logo.png'
+import MovieCard from '../components/MovieCard'
+
+const server_url = 'http://localhost:3000/api/movies'
+
 export default function MoviesList() {
+    const [movies, setMovies] = useState([])
+
+    useEffect(()=> {
+        axios.get(server_url)
+        .then((res)=>{
+            setMovies(res.data)
+        })
+    },[])
+
     return (
         <main>
-            <h3>Movies Catalogues</h3>
+            <h2 className='catalogue-title'>Movies Catalogue</h2>
+            <div className="container debug">
+                <div className="row">
+                    {movies.map(movie => 
+                        (<MovieCard 
+                            title={movie.title} image={movie.image} director={movie.director} year={movie.release_year}
+                        key={movie.id}/>
+                    ))}
+                    
+                </div>
+            </div>
         </main>
     )
 }

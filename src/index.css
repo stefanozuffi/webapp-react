@@ -25,7 +25,7 @@ a {
   width: 90%;
   margin: 0 auto;
   background-color: rgb(27, 27, 27);
-  padding: 2rem 5rem;
+  padding: 3% 8%; 
   border-radius: 10px;
 }
  .logo-ctn {
@@ -42,6 +42,12 @@ a {
   color: rgb(195, 60, 69);
 }
 
+.header-ctn .active {
+  color: rgb(247, 27, 42);
+  border-bottom: 1px solid rgb(247, 27, 42);
+  
+}
+
 
 /* HOMEPAGE */
 .home-comp {
@@ -53,7 +59,7 @@ a {
   background-color: rgba(43, 173, 31, 0.693);
 }
 
-.jumbo-ctn p, h3{
+.jumbo-ctn p, h2{
   text-align: center;
   color: rgb(27, 27, 27);
 }
@@ -62,4 +68,59 @@ a {
   width: 15rem;
   background-color: rgb(27, 27, 27);
   border-radius: 20px;
+}
+
+/* CARDLIST */
+
+.catalogue-title {
+  margin-top: 3rem;
+  font-size: 3rem;
+}
+
+/* Single Card Design */
+/* .debug * {
+  border: 1px dashed red;
+} */
+
+.card-title {
+  border: 1px solid black;
+}
+
+.card-title h5 {
+  padding-left: 5px;
+  padding-top: 10px;
+  color: rgb(246, 199, 213);
+  color: rgb(195, 60, 69);
+}
+
+.card-main {
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.card-image {
+  width: 15rem;
+  border-radius: 0;
+}
+
+.card-info {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card-info .year {
+  background-color: rgb(255, 187, 0);
+  padding: 5px 10px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+@media (max-width: 767px) {
+  .card-title h5 {
+    text-align: center;
+  }
+}
+
+/* In Card rating */
+.bi {
+  rotate: 90deg;
 }

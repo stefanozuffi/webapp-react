@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import logo from '../assets/images/MOVIES-logo.png'
 
 export default function AppHeader() {
@@ -10,9 +11,9 @@ export default function AppHeader() {
 
                 <div className="navbar-ctn">
                     <nav className='d-flex gap-4 fs-5'>
-                        <a href="#">Home</a>
-                        <a href="#">Catalogue</a>
-                        <a href="#">Admin</a>
+                        <NavLink to="/">Home</NavLink>
+                        <NavLink to="/movies">Catalogue</NavLink>
+                        <NavLink to="/admin">Admin</NavLink>
                     </nav>
                 </div>
             </div>
