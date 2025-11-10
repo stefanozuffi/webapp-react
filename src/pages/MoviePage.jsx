@@ -54,12 +54,13 @@ export default function MoviePage() {
                         <ReviewForm/>
                     </div>
 
-                    <div className="reviews-ctn container d-flex flex-column gap-3">
+                    <div className="reviews-ctn container d-flex flex-column gap-5 my-5">
 
                         {movie?.reviews.map((review,i) => {
                             return(
-                                <div key={i} className="review">
+                                <div key={i} className="review-ctn p-3">
                                     <h5>{review.name}</h5>
+                                    <p>{review.text}</p>
                                 </div>
                             )
                         })}
