@@ -14,7 +14,7 @@ export default function AppFooter() {
   ]
 
   return (
-    <footer className="bg-light py-5">
+    <footer className="py-5">
       <div className="container">
         <div className="row">
           <div className="col">

@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 import Rating from "../components/Rating";
 import { useEffect, useState } from "react";
+import ReviewForm from "../components/ReviewForm";
 
 const server_url = 'http://localhost:3000/api/movies'
 
@@ -33,7 +34,7 @@ export default function MoviePage() {
                 <div className="movie-main container d-flex justify-content-around">
                     <img src={`/movies_cover/${movie?.image}`} alt="movie cover"/>
                     <div className="card-info flex-column">
-                        <span className="fst-italic"> <span className="nunito"> by </span>
+                        <span className="fst-italic author"> <span className="nunito"> by </span>
                             {movie?.director}</span>
                         <span className="genre"><span className="nunito"> genre: </span> {movie?.genre.toUpperCase()}</span>
                         <p className="abstract nunito">{movie?.abstract}</p>
@@ -48,7 +49,11 @@ export default function MoviePage() {
             </section>
 
             <section className="review-section">
-                    <h2>Reviews</h2>
+                    <h2 className="white-title">Reviews</h2>
+                    <div className="container">
+                        <ReviewForm/>
+                    </div>
+                    
             </section>
         </main>
         

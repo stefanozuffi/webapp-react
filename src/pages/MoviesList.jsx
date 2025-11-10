@@ -21,7 +21,7 @@ export default function MoviesList() {
 
     return (
         <main>
-            <h2 className='catalogue-title'>Movies Catalogue</h2>
+            <h2 className='catalogue-title white-title'>Movies Catalogue</h2>
             <div className="container mb-5">
                 <div className="row">
                     {movies.map(movie => 

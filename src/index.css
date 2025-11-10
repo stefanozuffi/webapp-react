@@ -9,14 +9,29 @@
 
 body {
   font-family: 'Black Ops One', system-ui;
+  background-color: #1b1b1b;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 35px,
+      rgba(247, 27, 42, 0.05) 35px,
+      rgba(247, 27, 42, 0.05) 70px
+    );
+  min-height: 100vh;
 }
 
 a {
   text-decoration: none;
+  color: rgb(0, 0, 255);
 }
 
 .container {
   width: 80%;
+}
+
+.white-title {
+  color: white;
 }
 
 /* HEADER */
@@ -27,6 +42,7 @@ a {
   background-color: rgb(27, 27, 27);
   padding: 3% 8%; 
   border-radius: 10px;
+  border: 2px solid white;
 }
  .logo-ctn {
   margin: 0 2rem;
@@ -75,6 +91,7 @@ a {
 .catalogue-title {
   margin-top: 3rem;
   font-size: 3rem;
+  /* color: white; */
 }
 
 /* Single Card Design */
@@ -105,6 +122,10 @@ a {
   justify-content: space-around;
 }
 
+.card-info .author {
+  color: rgb(154, 149, 149);
+}
+
 .card-info .year {
   background-color: rgb(255, 187, 0);
   padding: 5px 10px;
@@ -133,18 +154,18 @@ a {
   margin: 5rem auto;
   width: 90%;
   border-top: 3px solid rgb(247, 27, 42);
+  border-left: 3px solid rgb(247, 27, 42);
   padding-top: 3rem;
 
-  background: linear-gradient(180deg, grey 0%, white 100%);
+  /* background: linear-gradient(180deg, grey 0%, transparent 100%); */
 }
 
 .movie-header .card-title{
     min-width: 35%;
     padding: 10px;
     margin: 1rem auto;
-    background-color: rgb(239, 222, 227);
-    border-radius: 5px;
     color: rgb(247, 27, 42);
+    background-color: rgb(37, 29, 28);
     text-align: center;
 
     position:absolute;
@@ -161,6 +182,11 @@ a {
 
 .movie-main .card-info {
   width: 40%;
+  color: rgb(154, 149, 149);
+}
+
+.movie-main .year {
+  color: black;
 }
 
 .nunito {
@@ -181,4 +207,54 @@ a {
 /* Review Section */
 .review-section {
   min-height: 20rem;
+}
+
+/* Form */
+form {
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: rgb(11, 71, 11);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+
+.review-form {
+  display: none;
+}
+
+.form-ctn button {
+  padding: 1rem;
+  color: white;
+}
+
+.add-rev-btn {
+  display: none;
+  background-color: rgb(11, 71, 11);
+}
+.trash-rev-btn {
+  display: none;
+ background-color: rgb(247, 27, 42);
+}
+
+.show {
+  display: block;
+}
+
+form input, textarea {
+  background-color: rgb(196, 184, 184);
+}
+
+.rr-i {
+  color: rgb(247, 27, 42);
+}
+
+.review-text {
+  width: 100%;
+}
+
+
+/* FOOTER */
+footer {
+  background-color: grey;
 }
