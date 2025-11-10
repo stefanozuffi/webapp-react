@@ -13,6 +13,10 @@ export default function MoviesList() {
         .then((res)=>{
             setMovies(res.data)
         })
+        .catch(err => {
+            console.log(err);
+            setError(err.message);
+          });
     },[])
 
     return (
@@ -22,7 +26,7 @@ export default function MoviesList() {
                 <div className="row">
                     {movies.map(movie => 
                         (<MovieCard 
-                            title={movie.title} image={movie.image} director={movie.director} avg_rating={movie.avg_rating} year={movie.release_year}
+                            movie={movie}
                         key={movie.id}/>
                     ))}
                     
