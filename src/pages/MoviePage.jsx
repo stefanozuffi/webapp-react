@@ -48,10 +48,22 @@ export default function MoviePage() {
                 </div>
             </section>
 
-            <section className="review-section">
+            <section className="review-section"> 
                     <h2 className="white-title">Reviews</h2>
                     <div className="container">
                         <ReviewForm/>
+                    </div>
+
+                    <div className="reviews-ctn container d-flex flex-column gap-3">
+
+                        {movie?.reviews.map((review,i) => {
+                            return(
+                                <div key={i} className="review">
+                                    <h5>{review.name}</h5>
+                                </div>
+                            )
+                        })}
+
                     </div>
                     
             </section>
