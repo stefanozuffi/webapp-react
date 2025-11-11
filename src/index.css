@@ -177,11 +177,14 @@ a {
 
 
 .movie-main img {
-  width: 40%;
+  min-width: 225px; 
+  max-width: 45%;
+  
 }
 
 .movie-main .card-info {
-  width: 40%;
+  min-width: 225px; 
+  max-width: 40%;
   color: rgb(154, 149, 149);
 }
 
@@ -201,6 +204,26 @@ a {
   width: 40%;
   margin: 1rem auto;
   margin-bottom: 4rem;
+}
+
+/* Media Query */
+@media (max-width: 768px) {
+  .movie-main {
+    flex-direction: column !important;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .movie-main img {
+    max-width: 70% !important;
+  }
+  .movie-main .card-info {
+    max-width: 60%;
+  }
+
+  .review-header .rating {
+    gap: 10px !important;
+  }
 }
 
 

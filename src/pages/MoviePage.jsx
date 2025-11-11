@@ -15,7 +15,6 @@ export default function MoviePage() {
         .then(res => setMovie(res.data))
         .catch(err => {
             console.log(err);
-            setError(err.message);
           });
     }, [])
 
@@ -35,10 +34,10 @@ export default function MoviePage() {
                     <img src={`/movies_cover/${movie?.image}`} alt="movie cover"/>
                     <div className="card-info flex-column">
                         <span className="fst-italic author"> <span className="nunito"> by </span>
-                            {movie?.director}</span>
+                            {movie?.director}</span> 
                         <span className="genre"><span className="nunito"> genre: </span> {movie?.genre.toUpperCase()}</span>
-                        <p className="abstract nunito">{movie?.abstract}</p>
-                        <span className="year">{movie?.release_year}</span>
+                        <p className="abstract nunito"> {movie?.abstract} </p>
+                        <span className="year"> {movie?.release_year} </span>
                     </div>
                     
                 </div>
