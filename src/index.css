@@ -75,13 +75,13 @@ a {
 }
 /* HomePage Jumbo */
 .jumbo-ctn {
+  color: wheat;
   border: 5px solid rgb(203, 46, 63);
-  background-color: rgba(43, 173, 31, 0.693);
+  /* background-color: rgba(43, 173, 31, 0.693); */
 }
 
 .jumbo-ctn p, h2{
   text-align: center;
-  color: rgb(27, 27, 27);
 }
 
 .jumbo-img {
@@ -186,8 +186,11 @@ a {
 
 /* In Card rating */
 .bi {
-  rotate: 90deg;
   color: rgb(138, 196, 119);
+}
+
+.rot {
+  rotate: 90deg;
 }
 
 

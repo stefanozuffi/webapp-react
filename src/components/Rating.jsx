@@ -1,6 +1,6 @@
 import { roundToHalf } from "../assets/utils/functions"
 
-export default function Rating({rating, dir='column', gap='3'}) {
+export default function Rating({rating, dir='column', gap='3', rot='rot'}) {
     const roundedRating = roundToHalf(rating)
     const full_point = Math.floor(roundedRating)
     const half_point = roundedRating % 1 !== 0
@@ -10,7 +10,7 @@ export default function Rating({rating, dir='column', gap='3'}) {
         <div className={`rating d-flex flex-${dir} justify-content-around gap-${gap} ms-2`}>
 
             {Array.from({length: full_point}, (_,i) => <i key={i} className="bi bi-circle-fill"></i> )}
-            {half_point && <i className="bi bi-circle-half"></i>}
+            {half_point && <i className={`bi bi-circle-half ${rot}`}></i>}
             {Array.from({length: empty_point}, (_,i) => <i key={i} className="bi bi-circle"></i> )}
                         
         </div>

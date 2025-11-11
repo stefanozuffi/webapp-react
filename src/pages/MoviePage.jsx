@@ -43,7 +43,7 @@ export default function MoviePage() {
                 </div>
 
                 <div className="footer">
-                    <Rating rating={movie?.avg_rating} dir={'row'}/>
+                    <Rating rating={movie?.avg_rating} dir={'row'} rot={''}/>
                 </div>
             </section>
 

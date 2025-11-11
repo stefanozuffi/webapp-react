@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import jumbo_logo from '../assets/images/jumbo-logo.png'
 import cozy_movie from '../assets/images/cozy-movie.png'
+import community_pic from '../assets/images/community.png'
 
 export default function HomePage() {
     return(
@@ -47,7 +48,29 @@ export default function HomePage() {
             </section>
 
             <section className='community-section'>
+                <div className="community-ctn d-flex flex-column">
+                    <div className="section-header align-self-end">
+                        <h3>Join a dense Community!</h3>
+                    </div>
 
+                        <div className="section-content d-flex justify-content-center">
+                            <div className="sect-img d-flex justify-content-center align-items-center">
+                                <img src={community_pic} alt="cozy-image"/>
+                            </div>
+                            
+                            <div className="sect-text d-flex flex-column justify-content-center gap-4 mt-4">
+                                <p> Network and discuss your favourite topic with 
+                                    fellow movie enthusiasts! Rate and give feedback on
+                                    any title in the appropriate section you can find by clicking
+                                    on the movie icon in the catalogue!
+                                </p>
+                            </div>
+
+                            
+                        </div>
+                    
+
+                </div>
             </section>
             
             
