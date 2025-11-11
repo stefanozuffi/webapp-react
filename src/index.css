@@ -66,6 +66,10 @@ a {
 
 
 /* HOMEPAGE */
+.home-ctn section {
+  margin-bottom: 5rem;
+}
+
 .home-comp {
   margin: 3em auto;
 }
@@ -84,6 +88,47 @@ a {
   width: 15rem;
   background-color: rgb(27, 27, 27);
   border-radius: 20px;
+}
+
+.section-header {
+  color: white;
+  padding: 1rem;
+  width: fit-content;
+  padding-right: 30%;
+  border: 5px solid rgb(203, 46, 63);
+}
+
+.section-content {
+  color: wheat;
+}
+
+.sect-text {
+  width:  30%;
+}
+
+.sect-img {
+  width: 60%;
+}
+
+.sect-img img {
+  width: 100%;
+}
+
+.browse-btn {
+  border: 3px solid wheat;
+}
+
+@media (max-width: 767px) {
+  .section-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  .sect-text {
+    width: 70%;
+  }
 }
 
 /* CARDLIST */
