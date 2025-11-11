@@ -59,8 +59,12 @@ export default function MoviePage() {
                         {movie?.reviews.map((review,i) => {
                             return(
                                 <div key={i} className="review-ctn p-3">
-                                    <h5>{review.name}</h5>
-                                    <p>{review.text}</p>
+                                    <div className="review-header d-flex justify-content-between">
+                                        <h5>{review.name}</h5>
+                                        <Rating rating={review.vote} dir={'row'}/>
+                                    </div>
+                                    
+                                    <p className="nunito">{review.text}</p>
                                 </div>
                             )
                         })}

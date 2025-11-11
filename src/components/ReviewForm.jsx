@@ -8,7 +8,7 @@ export default function ReviewForm() {
         <div className="form-ctn">
             <button className={`add-rev-btn ${!showForm ? 'show' : ''}`} onClick={()=>setShowForm(true)}> + Add Review </button>
             <button className={`trash-rev-btn ${showForm ? 'show' : ''}`} onClick={()=>setShowForm(false)}>x Trash Review</button>
-             <form className={`review-form ${showForm ? 'show' : ''}`}>
+             <form className={`review-form ${showForm ? 'show' : ''} my-4`}>
              <div className="form-header d-flex gap-5">
                 <div className="name-input-ctn">
                     <label htmlFor="name" className="form-label">let us know what you think about the movie!</label>

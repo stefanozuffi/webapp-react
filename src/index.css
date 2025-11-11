@@ -215,7 +215,8 @@ form {
   font-family: 'Courier New', Courier, monospace;
   background-color: rgb(11, 71, 11);
   padding: 1rem;
-  border-radius: 10px;
+  padding-top: 2rem;
+  border-radius: 0px 5px 5px 5px;
 }
 
 
@@ -254,13 +255,27 @@ form input, textarea {
 }
 
 /* Reviews List */
+.reviews-ctn {
+  max-width: 70%;
+}
+
 .review-ctn {
-  background-color: rgb(146, 198, 146);
+  border-top: 3px solid rgb(153, 15, 24);
+  border-left: 3px solid rgb(247, 27, 42);
+  background-color: rgb(68, 127, 49);
   border-radius: 0px 5px 5px 5px;
 }
 
-.review-ctn h5 {
-  border-bottom: 2px solid green;
+.review-header h5 {
+  width: fit-content;
+  padding-right: 3rem;
+  padding-left: 0.4rem;
+  color: rgb(62, 50, 50);
+  border-bottom: 2px solid rgb(153, 15, 24);
+}
+
+.review-header .bi {
+  color: rgb(153, 15, 24);
 }
 
 /* FOOTER */
