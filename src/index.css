@@ -129,6 +129,10 @@ a {
   .sect-text {
     width: 70%;
   }
+
+  .sect-img {
+    min-width: 350px;
+  }
 }
 
 /* CARDLIST */
@@ -282,12 +286,17 @@ a {
 
 /* Form */
 form {
-  color: white;
-  font-family: 'Courier New', Courier, monospace;
+  color: wheat;
+  /* font-family: 'Courier New', Courier, monospace; */
   background-color: rgb(11, 71, 11);
+  border: 3px solid wheat;
   padding: 1rem;
   padding-top: 2rem;
-  border-radius: 0px 5px 5px 5px;
+  border-radius: 0px 15px 15px 15px;
+}
+
+form textarea {
+  padding: 1rem;
 }
 
 
@@ -297,7 +306,8 @@ form {
 
 .form-ctn button {
   padding: 1rem;
-  color: white;
+  color: wheat;
+  border: 3px solid wheat;
 }
 
 .add-rev-btn {
@@ -311,6 +321,12 @@ form {
 
 .show {
   display: block;
+}
+
+.review-form.show {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 form input, textarea {

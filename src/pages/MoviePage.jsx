@@ -9,6 +9,7 @@ const server_url = 'http://localhost:3000/api/movies'
 export default function MoviePage() {
     const { id } = useParams()
     const [movie, setMovie] = useState(null)
+    const [revSwitch, setRevSwitch] = useState(0)
 
     useEffect(()=>{
         axios.get(`${server_url}/${id}`)
@@ -16,7 +17,8 @@ export default function MoviePage() {
         .catch(err => {
             console.log(err);
           });
-    }, [])
+    }, [revSwitch])
+
 
     return(
         <main>
@@ -50,7 +52,7 @@ export default function MoviePage() {
             <section className="review-section"> 
                     <h2 className="white-title">Reviews</h2>
                     <div className="container">
-                        <ReviewForm/>
+                        <ReviewForm movie_id={movie?.id} revSwitch={revSwitch} setRevSwitch={setRevSwitch}/>
                     </div>
 
                     <div className="reviews-ctn container d-flex flex-column gap-5 my-5">
