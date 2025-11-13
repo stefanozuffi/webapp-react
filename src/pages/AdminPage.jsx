@@ -1,17 +1,18 @@
 import { useState, useEffect, use } from "react";
 import axios from "axios";
+import MovieForm from "../components/MovieForm";
 
 const server_url = 'http://localhost:3000/api/movies'
 
 export default function AdminPage() {
     const [movies, setMovies] = useState([])
+    const [showForm, setShowForm] = useState(false)
     const [showSafety, setShowSafety] = useState(false)
     const [deleting, setDeleting] = useState(null)
 
     useEffect(()=> {
         axios.get(server_url)
         .then(res => {
-            console.log(res.data)
             setMovies(res.data)
         })
         .catch(err => {
@@ -22,11 +23,14 @@ export default function AdminPage() {
 
     return(
         <main className="admin-page">
-            <div className="admin-header d-flex justify-content-around p-5">
-                <h2>Admin Page</h2>
-                <button className="btn btn-primary"> + Add Movie to DB </button>
+            <div className="container">
+                <div className="admin-header d-flex justify-content-around p-5">
+                    <h2>Admin Page</h2>
+                    <button className="btn store-movie-btn" onClick={() => setShowForm(true)}> + Add Movie to DB </button>
+                </div>
+
+                { showForm && <MovieForm showForm={showForm} setShowForm={setShowForm}/> }
             </div>
-            
 
             <div className="list-ctn container my-5">
                 <ul className="admin-movies list-unstyled d-flex flex-column gap-5">

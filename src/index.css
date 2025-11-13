@@ -318,7 +318,7 @@ form textarea {
 }
 .trash-rev-btn {
   display: none;
- background-color: rgb(247, 27, 42);
+  background-color: rgb(247, 27, 42);
 }
 
 .show {
@@ -380,6 +380,55 @@ form input, textarea {
   border-bottom: 3px solid wheat;
 }
 
+/* Movie Form */
+.movie-form-ctn {
+  padding: 1rem;
+}
+
+.movie-form {
+    background-color: white;
+    color: rgb(83, 80, 80);
+    display: flex;
+    flex-direction: column;
+    border-radius: 0;
+    border: 2px solid black;
+    padding-bottom: 2rem;
+    
+}
+
+.store-movie-btn {
+  background-color: black;
+  font-family: 'Black Ops One', system-ui;
+  border: 5px solid rgb(203, 46, 63);
+  color: rgb(203, 46, 63);
+}
+
+.store-movie-btn:hover {
+  background-color: green;
+}
+
+.trash-movie-store {
+  background-color: rgb(247, 27, 42) !important; 
+  /* debug why this css gets overwritten without '!important' */
+
+  width: fit-content;
+}
+
+.submit-movie-btn {
+  background-color: green;
+  border: 2px solid black !important;
+  width: fit-content;
+  color: white !important;
+  margin-top: 2rem;
+  align-self: flex-end;
+}
+
+.submit-movie-btn:hover {
+  color: black;
+}
+
+
+/* Admin List */
 .admin-movie {
   border-left: 3px solid wheat;
   border-right: 3px solid wheat;
