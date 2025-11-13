@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import '@fontsource/black-ops-one';
 import '@fontsource-variable/nunito';
+import '@fontsource-variable/inter';
 
 
 createRoot(document.getElementById('root')).render(

@@ -10,7 +10,7 @@ export default function MoviesList() {
 
     useEffect(()=> {
         axios.get(server_url)
-        .then((res)=>{
+        .then(res => {
             setMovies(res.data)
         })
         .catch(err => {

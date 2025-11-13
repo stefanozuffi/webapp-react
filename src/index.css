@@ -34,7 +34,7 @@ a {
   color: white;
 }
 
-/* HEADER */
+/* #region HEADER */
 
 .header-ctn {
   width: 90%;
@@ -64,8 +64,9 @@ a {
   
 }
 
+/* #endregion */
 
-/* HOMEPAGE */
+/* #region HOMEPAGE */
 .home-ctn section {
   margin-bottom: 5rem;
 }
@@ -134,8 +135,9 @@ a {
     min-width: 350px;
   }
 }
+/* #endregion */
 
-/* CARDLIST */
+/* #region CARDLIST */
 
 .catalogue-title {
   margin-top: 3rem;
@@ -197,9 +199,9 @@ a {
   rotate: 90deg;
 }
 
+/* #endregion */
 
-
-/* SINGLE MOVIE PAGE */
+/* #region SINGLE MOVIE PAGE */
 
 /* Movie Section */
 .movie-section {
@@ -365,7 +367,68 @@ form input, textarea {
   color: rgb(153, 15, 24);
 }
 
-/* FOOTER */
+/* #endregion */
+
+/* #region Admin Page */
+
+.admin-page {
+  font-family: 'Inter Variable', sans-serif;
+  color: wheat;
+}
+
+.admin-header {
+  border-bottom: 3px solid wheat;
+}
+
+.admin-movie {
+  border-left: 3px solid wheat;
+  border-right: 3px solid wheat;
+
+  background: linear-gradient(90deg, transparent 0%, wheat 100%);
+  
+}
+
+.admin-movie .bi {
+  color: red;
+}
+
+.admin-movie .year {
+  background-color: rgb(255, 187, 0);
+  padding: 2px 7px;
+  border-radius: 5px 5px 5px 5px;
+  width: fit-content;
+  color: black;
+  font-family: 'Black Ops One', system-ui;
+}
+
+.movie-info {
+  border-bottom: 2px solid red;
+}
+
+/* Safety Pop-Up */
+.safety-pop-up {
+  position: fixed;
+  top: 50%;
+  right: 15%;
+  background-color: white;
+
+  color: black;
+  border: 3px solid red;
+}
+
+.safety-pop-up .bi {
+  color: red;
+}
+
+.btn-yes {
+  background-color: red;
+  color: white;
+}
+
+/* #endregion */
+
+/* #region FOOTER */
 footer {
   background-color: grey;
 }
+/* #endregion */
