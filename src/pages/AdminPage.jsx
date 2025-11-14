@@ -29,7 +29,7 @@ export default function AdminPage() {
                     <button className="btn store-movie-btn" onClick={() => setShowForm(true)}> + Add Movie to DB </button>
                 </div>
 
-                { showForm && <MovieForm showForm={showForm} setShowForm={setShowForm}/> }
+                { showForm && <MovieForm setShowForm={setShowForm}/> }
             </div>
 
             <div className="list-ctn container my-5">
