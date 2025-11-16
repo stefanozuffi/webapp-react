@@ -163,6 +163,14 @@ a {
   width: fit-content;
 }
 
+.card-main .card-img-ctn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 23rem;
+  background-color: #1b1b1b;
+}
+
 .card-image {
   width: 15rem;
   border-radius: 0;
@@ -230,16 +238,28 @@ a {
 }
 
 
-.movie-main img {
-  min-width: 225px; 
+.movie-main .img-ctn {
+  min-width: 215px; 
   max-width: 45%;
-  
+  min-height: 22rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: black;
+}
+
+.img-ctn img {
+  width: 100%;
 }
 
 .movie-main .card-info {
   min-width: 225px; 
   max-width: 40%;
   color: rgb(154, 149, 149);
+}
+
+.movie-main .card-info * {
+  margin-bottom: 20px;
 }
 
 .movie-main .year {
@@ -268,7 +288,7 @@ a {
     gap: 2rem;
   }
   
-  .movie-main img {
+  .movie-main .img-ctn {
     max-width: 70% !important;
   }
   .movie-main .card-info {
@@ -425,6 +445,7 @@ form input, textarea {
 
 .submit-movie-btn:hover {
   color: black;
+  background-color: blue;
 }
 
 
@@ -432,6 +453,7 @@ form input, textarea {
 .admin-movie {
   border-left: 3px solid wheat;
   border-right: 3px solid wheat;
+  padding: 1rem 2.5rem;
 
   background: linear-gradient(90deg, transparent 0%, wheat 100%);
   
@@ -458,7 +480,8 @@ form input, textarea {
 .safety-pop-up {
   position: fixed;
   top: 50%;
-  right: 15%;
+  right: 5%;
+  left: 5%;
   background-color: white;
 
   color: black;

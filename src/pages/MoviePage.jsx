@@ -13,12 +13,14 @@ export default function MoviePage() {
 
     useEffect(()=>{
         axios.get(`${server_url}/${id}`)
-        .then(res => setMovie(res.data))
+        .then(res => {
+            setMovie(res.data)})
         .catch(err => {
             console.log(err);
           });
     }, [revSwitch])
 
+    const imgPath = movie?.image.startsWith('http') ? movie?.image : `/movies_cover/${movie?.image}`;
 
     return(
         <main>
@@ -33,7 +35,10 @@ export default function MoviePage() {
                 </div>
 
                 <div className="movie-main container d-flex justify-content-around">
-                    <img src={`/movies_cover/${movie?.image}`} alt="movie cover"/>
+                    <div className="img-ctn">
+                        <img src={imgPath} alt="movie cover"/>
+                    </div>
+                    
                     <div className="card-info flex-column">
                         <span className="fst-italic author"> <span className="nunito"> by </span>
                             {movie?.director}</span> 

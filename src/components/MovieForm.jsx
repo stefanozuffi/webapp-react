@@ -12,7 +12,7 @@ const initialData = {
 }
 const server_url = 'http://localhost:3000/api/movies'
 
-export default function MovieForm({setShowForm}) {
+export default function MovieForm({setShowForm, submitSwitch, setSubmitSwitch}) {
     const [formData, setFormData] = useState(initialData)
 
     function handleSubmit(e) {
@@ -31,6 +31,7 @@ export default function MovieForm({setShowForm}) {
         .then(response => {
             console.log(response)
             if (response.status === 201) {
+                setSubmitSwitch(1 - submitSwitch)
                 setFormData(initialData)
             }
         }) 
@@ -61,7 +62,7 @@ export default function MovieForm({setShowForm}) {
                             <div className="genre-input">
                                 <label htmlFor="genre"> Genre </label>
                                 <input type="text" className="form-control" name="release_year" id="release_year"
-                                onChange={(e) => setFormData({...formData, release_year: e.target.value })}/>
+                                onChange={(e) => setFormData({...formData, genre: e.target.value })}/>
                             </div>
 
                             <div className="release-year-input">

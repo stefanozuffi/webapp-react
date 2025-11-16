@@ -9,6 +9,7 @@ export default function AdminPage() {
     const [showForm, setShowForm] = useState(false)
     const [showSafety, setShowSafety] = useState(false)
     const [deleting, setDeleting] = useState(null)
+    const [submitSwitch, setSubmitSwitch] = useState(0)
 
     useEffect(()=> {
         axios.get(server_url)
@@ -19,7 +20,7 @@ export default function AdminPage() {
             console.log(err);
             setError(err.message);
           });
-    },[])
+    }, [submitSwitch])
 
     return(
         <main className="admin-page">
@@ -29,14 +30,14 @@ export default function AdminPage() {
                     <button className="btn store-movie-btn" onClick={() => setShowForm(true)}> + Add Movie to DB </button>
                 </div>
 
-                { showForm && <MovieForm setShowForm={setShowForm}/> }
+                { showForm && <MovieForm setShowForm={setShowForm} submitSwitch={submitSwitch} setSubmitSwitch={setSubmitSwitch}/> }
             </div>
 
             <div className="list-ctn container my-5">
                 <ul className="admin-movies list-unstyled d-flex flex-column gap-5">
                     {movies.map(movie => {
                         return <li key={movie.id}>
-                            <div className="admin-movie d-flex justify-content-between p-2">
+                            <div className="admin-movie d-flex justify-content-between">
                                 <div className="admin-movie-info d-flex flex-column gap-3">
                                     <div className="movie-info d-flex gap-5 pb-3">
 
