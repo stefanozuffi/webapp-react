@@ -31,8 +31,14 @@ export default function MovieForm({setShowForm, submitSwitch, setSubmitSwitch}) 
         .then(response => {
             console.log(response)
             if (response.status === 201) {
-                setSubmitSwitch(1 - submitSwitch)
+                
                 setFormData(initialData)
+                document.getElementById('image').value = ''
+                setSubmitSwitch(1 - submitSwitch)
+                alert(response.data.message, `id: ${response.data.id}`)
+                setShowForm(false)
+
+
             }
         }) 
         .catch(err => console.log(err))
@@ -47,27 +53,31 @@ export default function MovieForm({setShowForm, submitSwitch, setSubmitSwitch}) 
 
                         <div className="my-2">
                             <label htmlFor="title">Movie Title</label>
-                            <input type="text" className="form-control" name="title" id="title"
+                            <input type="text" className="form-control" name="title" id="title" 
+                            value={formData.title}
                             onChange={(e) => setFormData({...formData, title: e.target.value })}/>
                         </div>
 
-                        <div className="my-2 d-flex justify-content-around">
+                        <div className="form-info-in my-2 d-flex justify-content-around flex-wrap">
 
-                            <div className="director-input">
+                            <div className="director-input me-3">
                                 <label htmlFor="director">Director's fullname </label>
                                 <input type="text" className="form-control" name="director" id="director"
+                                value={formData.director}
                                 onChange={(e) => setFormData({...formData, director: e.target.value })}/>
                             </div>
 
-                            <div className="genre-input">
+                            <div className="genre-input me-3">
                                 <label htmlFor="genre"> Genre </label>
-                                <input type="text" className="form-control" name="release_year" id="release_year"
+                                <input type="text" className="form-control" name="genre" id="genre"
+                                value={formData.genre}
                                 onChange={(e) => setFormData({...formData, genre: e.target.value })}/>
                             </div>
 
-                            <div className="release-year-input">
+                            <div className="release-year-input me-3">
                                 <label htmlFor="release-year">Release Year </label>
                                 <input type="text" className="form-control" name="release_year" id="release_year"
+                                value={formData.release_year}
                                 onChange={(e) => setFormData({...formData, release_year: e.target.value })}/>
                             </div>
 
@@ -82,6 +92,7 @@ export default function MovieForm({setShowForm, submitSwitch, setSubmitSwitch}) 
                         <div className="my-2">
                             <label htmlFor="abstract"> Abstract </label>
                             <input type="text" className="form-control" name="abstract" id="abstract"
+                            value={formData.abstract}
                             onChange={(e) => setFormData({...formData, abstract: e.target.value })}/>
                         </div>
                         
