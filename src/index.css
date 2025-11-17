@@ -455,7 +455,7 @@ form input, textarea {
 .admin-movie {
   border-left: 3px solid wheat;
   border-right: 3px solid wheat;
-  padding: 1rem 2.5rem;
+  padding: 1rem 2rem;
 
   background: linear-gradient(90deg, transparent 0%, wheat 100%);
   
@@ -478,7 +478,20 @@ form input, textarea {
   border-bottom: 2px solid red;
 }
 
-/* Safety Pop-Up */
+
+
+/* Accordion */
+.acc-btn {
+  color: wheat;
+}
+   /* Accordion Body: reviews */
+
+.btn-erase-btn .bi {
+  color: red;
+}
+
+
+/* Safety Pop-Up Movie*/
 .safety-pop-up {
   position: fixed;
   top: 50%;

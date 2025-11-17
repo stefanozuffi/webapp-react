@@ -11,6 +11,7 @@ export default function AdminPage() {
     const [showSafety, setShowSafety] = useState(false)
     const [deleting, setDeleting] = useState(null)
     const [submitSwitch, setSubmitSwitch] = useState(0)
+    const [activeAcc, setActiveAcc] = useState(0)
 
     useEffect(()=> {
         axios.get(server_url)
@@ -49,7 +50,7 @@ export default function AdminPage() {
             <div className="list-ctn container my-5">
                 <ul className="admin-movies list-unstyled d-flex flex-column gap-5">
                     {movies.map(movie => {
-                        return <AdminMovieCard key={movie.id} movie={movie} setDeleting={setDeleting} setShowSafety={setShowSafety}/>
+                        return <AdminMovieCard key={movie.id} movie={movie} setDeleting={setDeleting} setShowSafety={setShowSafety} activeAcc={activeAcc} setActiveAcc={setActiveAcc}/>
                     })}
                 </ul>
 
