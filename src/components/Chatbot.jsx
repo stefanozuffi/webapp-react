@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
 import './Chatbot.css';
 
 const Chatbot = () => {
@@ -29,18 +30,18 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:3001/api/chat', {
+      const response = await axios.post('http://localhost:3000/api/chat', {
         method: 'POST',
         headers: { 
-          'Content-Type': 'application/json',
-        },
+          'Content-Type': 'application/json', 
+        }, 
         body: JSON.stringify({ 
-          message: inputMessage,
+          message: inputMessage, 
           context: 'film-cinema' 
-        })
-      });
+        }) 
+      }); 
       
-      const data = await response.json();
+      const data = await response.json(); 
       const aiMessage = { 
         text: data.reply || "Mi dispiace, non ho capito.", 
         sender: 'ai' 
@@ -69,7 +70,7 @@ const Chatbot = () => {
       {/* Chat Button */}
       {!isOpen && (
         <button className="chatbot-toggle-btn" onClick={toggleChat}>
-          💬 AI Assistant
+          <i className="bi bi-suit-club-fill"></i> <span> AI ASSISTANT</span>
         </button>
       )}
 
@@ -89,7 +90,7 @@ const Chatbot = () => {
             ))}
             {isLoading && (
               <div className="message ai loading">
-                Typing...
+                ...Typing...
               </div>
             )}
             <div ref={messagesEndRef} />

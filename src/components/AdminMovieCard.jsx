@@ -29,6 +29,8 @@ export default function AdminMovieCard({movie, setDeleting, setShowSafety, activ
         .catch(err => console.log('Error deleting review', err))
     }
 
+    const imgPath = movie.image.startsWith('http') ? movie.image : `/movies_cover/${movie.image}`
+
     return(
     
         <li>
@@ -61,6 +63,22 @@ export default function AdminMovieCard({movie, setDeleting, setShowSafety, activ
                {activeAcc === movie.id && 
                
                     <div className="acc-body"> 
+                        <div className="d-flex gap-5 justify-content-center">
+                            <div className="admin-image-ctn">
+                                <img className="admin-img" src={imgPath} alt="admin-movie-image"/>
+                            </div>
+                            <div className="adv-info d-flex flex-column justify-content-center gap-5">
+                                <span className="fw-bold"> genre: {movie.genre.toUpperCase()}</span>
+                                <p>
+                                    {movie.abstract}
+                                </p>
+                            </div>
+                        </div>
+                        
+
+
+                        
+
                         {reviews.length > 0 && 
                         reviews.map(rev => <AdminRevCard rev={rev} setShowSafetyRev={setShowSafetyRev} setDeletingRev={setDeletingRev} key={rev.id}/>)}
                         {reviews.length === 0 && 
