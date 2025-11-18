@@ -3,6 +3,7 @@ import axios from 'axios';
 import Rating from "../components/Rating";
 import { useEffect, useState } from "react";
 import ReviewForm from "../components/ReviewForm";
+import Loader from "../components/Loader";
 
 const server_url = 'http://localhost:3000/api/movies'
 
@@ -10,74 +11,104 @@ export default function MoviePage() {
     const { id } = useParams()
     const [movie, setMovie] = useState(null)
     const [revSwitch, setRevSwitch] = useState(0)
+    const [loading, setLoading] = useState(true)
 
-    useEffect(()=>{
+    function fetchMovie(server_url) {
         axios.get(`${server_url}/${id}`)
         .then(res => {
             setMovie(res.data)})
         .catch(err => {
             console.log(err);
           });
+    }
+
+    useEffect(()=> {
+        function loadData() {
+            fetchMovie
+            setLoading(false)
+        }
+        const timer = setTimeout(loadData, 1200)
+        return () => clearTimeout(timer);
+    }, [])
+
+    useEffect(() => {
+        fetchMovie(server_url)
     }, [revSwitch])
 
     const imgPath = movie?.image.startsWith('http') ? movie?.image : `/movies_cover/${movie?.image}`;
 
     return(
+        
         <main>
-            <section className="movie-section d-flex flex-column gap-5">
 
-                <div className="movie-header">
-                   
-                        <div className="card-title">
-                            <h5>{movie?.title}</h5>
-                        </div>
-                    
+            {loading &&
+
+                <div className="loading d-flex flex-column justify-content-center align-items-center gap-5">
+                    <Loader/>
+                    <span>...LOADING...</span>
                 </div>
+                
+            }
 
-                <div className="movie-main container d-flex justify-content-around">
-                    <div className="img-ctn">
-                        <img src={imgPath} alt="movie cover"/>
-                    </div>
-                    
-                    <div className="card-info flex-column">
-                        <span className="fst-italic author"> <span className="nunito"> by </span>
-                            {movie?.director}</span> 
-                        <span className="genre"><span className="nunito"> genre: </span> {movie?.genre.toUpperCase()}</span>
-                        <p className="abstract nunito"> {movie?.abstract} </p>
-                        <span className="year"> {movie?.release_year} </span>
-                    </div>
-                    
-                </div>
+            {(!loading && movie) && 
+                <div className="movie-ctn">
+                    <section className="movie-section d-flex flex-column gap-5">
 
-                <div className="footer">
-                    <Rating rating={movie?.avg_rating} dir={'row'} rot={''}/>
-                </div>
-            </section>
-
-            <section className="review-section"> 
-                    <h2 className="white-title">Reviews</h2>
-                    <div className="container">
-                        <ReviewForm movie_id={movie?.id} revSwitch={revSwitch} setRevSwitch={setRevSwitch}/>
-                    </div>
-
-                    <div className="reviews-ctn container d-flex flex-column gap-5 my-5">
-
-                        {movie?.reviews.map((review,i) => {
-                            return(
-                                <div key={i} className="review-ctn p-3">
-                                    <div className="review-header d-flex justify-content-between">
-                                        <h5>{review.name}</h5>
-                                        <Rating rating={review.vote} dir={'row'}/>
-                                    </div>
-                                    
-                                    <p className="nunito">{review.text}</p>
+                        <div className="movie-header">
+                        
+                                <div className="card-title">
+                                    <h5>{movie?.title}</h5>
                                 </div>
-                            )
-                        })}
+                            
+                        </div>
 
-                    </div>
-                    
-            </section>
+                        <div className="movie-main container d-flex justify-content-around">
+                            <div className="img-ctn">
+                                <img src={imgPath} alt="movie cover"/>
+                            </div>
+                            
+                            <div className="card-info flex-column">
+                                <span className="fst-italic author"> <span className="nunito"> by </span>
+                                    {movie?.director}</span> 
+                                <span className="genre"><span className="nunito"> genre: </span> {movie?.genre.toUpperCase()}</span>
+                                <p className="abstract nunito"> {movie?.abstract} </p>
+                                <span className="year"> {movie?.release_year} </span>
+                            </div>
+                            
+                        </div>
+
+                        <div className="footer">
+                            <Rating rating={movie?.avg_rating} dir={'row'} rot={''}/>
+                        </div>
+                    </section>
+
+                    <section className="review-section"> 
+                            <h2 className="white-title">Reviews</h2>
+                            <div className="container">
+                                <ReviewForm movie_id={movie?.id} revSwitch={revSwitch} setRevSwitch={setRevSwitch}/>
+                            </div>
+
+                            <div className="reviews-ctn container d-flex flex-column gap-5 my-5">
+
+                                {movie?.reviews.map((review,i) => {
+                                    return(
+                                        <div key={i} className="review-ctn p-3">
+                                            <div className="review-header d-flex justify-content-between">
+                                                <h5>{review.name}</h5>
+                                                <Rating rating={review.vote} dir={'row'}/>
+                                            </div>
+                                            
+                                            <p className="nunito">{review.text}</p>
+                                        </div>
+                                    )
+                                })}
+
+                            </div>
+                            
+                    </section>
+                </div>
+            }
+            
         </main>
         
 
