@@ -20,8 +20,8 @@ export default function AdminPage() {
         title: '',
         director: '',
         genre: '',
-        filter_range: {
-            isDefined: false, 
+        rating_range: {
+            n_a: true, 
             start_value: null, 
             end_value: null 
         }
@@ -57,27 +57,56 @@ export default function AdminPage() {
         }
 
         else if (changedField) {
-            setFilterMovies(filter(changedField))
+            setFilterMovies(filter(changedField)) 
         }  
 
-        prevSearchRef.current = searchInput
+        prevSearchRef.current = searchInput 
 
-    },[searchInput])
+    },[searchInput]) 
 
 
     //Utilities for advanced Admin-Search
     function filter(field) {
-     if (field !== 'filter_range') 
-        return movies.filter(movie => movie[field].toLowerCase().includes(searchInput[field].toLowerCase()))
-     
+        if (field !== 'rating_range') {
+            return movies.filter(movie => 
+                movie[field].toLowerCase().includes(searchInput[field].toLowerCase())
+            )
+        }
+        
+        // Rating range filter
+        const { start_value, end_value, n_a } = searchInput.rating_range
+        
+        return movies.filter(movie => {
+            const rating = movie.avg_rating
+            
+            // Includi film senza rating se n_a è true
+            if (!rating && n_a) return true
+            if (!rating && !n_a) return false
+            
+            // Filtro per range
+            if (start_value && !end_value) {
+                return rating >= Number(start_value)
+            }
+            if (!start_value && end_value) {
+                return rating <= Number(end_value)
+            }
+            if (start_value && end_value) {
+                return rating >= Number(start_value) && rating <= Number(end_value)
+            }
+            
+            // Se non c'è range, mostra tutti
+            return true
+        })
     }
 
+
     function isEmpty() {
-       
             return Object.keys(searchInput).every(key => {
-                if (key === 'filter_range') return true
-                return searchInput[key].trim() === ''
-            })
+        if (key === 'rating_range') {
+            return !searchInput[key].start_value && !searchInput[key].end_value
+        }
+        return searchInput[key].trim() === ''
+    })
     }
 
 
@@ -104,9 +133,56 @@ export default function AdminPage() {
                         <h1>Admin Environment</h1>
                     
                         <div className="admin search-bar d-flex flex-column align-self-center">
-                            <label className='mb-1' style={{color: 'darkred'}} htmlFor="search-bar"> Search Movie </label>
-                            <input className='form-control' type="text" id='search-bar'
-                            onChange={(e) => setSearchInput({...searchInput, title: e.target.value})}/>
+                            {/* Title */}
+                            <div className="search-component">
+                                <label className='mb-1' style={{color: 'darkred'}} htmlFor="search-bar"> Search Movie </label>
+                                <input className='form-control' type="text" id='search-bar-title'
+                                onChange={(e) => setSearchInput({...searchInput, title: e.target.value})}/>
+                            </div>
+
+                            {/* Director */}
+                            <div className="search-component">
+                                <label className='mb-1' style={{color: 'darkred'}} htmlFor="search-bar"> Search Director </label>
+                                <input className='form-control' type="text" id='search-bar-director'
+                                onChange={(e) => setSearchInput({...searchInput, director: e.target.value})}/>
+                            </div>
+
+                            {/* Genre */}
+                            <div className="search-component">
+                                <label className='mb-1' style={{color: 'darkred'}} htmlFor="search-bar"> Search Genre </label>
+                                <input className='form-control' type="text" id='search-bar-genre'
+                                onChange={(e) => setSearchInput({...searchInput, genre: e.target.value})}/>
+                            </div>
+
+                            {/* Rating Range */}
+                            <div className="search-component">
+                                <label className='mb-1' style={{color: 'darkred'}} htmlFor="search-bar"> Rating Range </label>
+
+                                <div className="rating-search d-flex justify-content-around">
+                                    <input className='form-control' type="number" id='search-bar-rating-start' placeholder="min"
+                                    value={searchInput.rating_range.start_value || ''}
+                                    min="1" 
+                                    max="5" 
+                                    step="1" 
+                                    onChange={(e) => setSearchInput({...searchInput, rating_range: {...searchInput.rating_range, start_value: e.target.value }})}/>
+
+                                    <input className='form-control' type="number" id='search-bar-rating-end' placeholder="max"
+                                    value={searchInput.rating_range.end_value || ''}
+                                    min="1" 
+                                    max="5" 
+                                    step="1" 
+                                    onChange={(e) => setSearchInput({...searchInput, rating_range: {...searchInput.rating_range, end_value: e.target.value }})}/>
+                                
+                                    <div className="checkbox d-flex gap-2">
+                                        <label htmlFor="checkbox"> include n/a</label>
+                                        <input className="n-a" type="checkbox" id="n-a" name="n-a"
+                                        checked={searchInput.rating_range.n_a}
+                                        onChange={(e) => setSearchInput({...searchInput, rating_range: {...searchInput.rating_range, n_a: e.target.checked }})}/>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
                         </div>
                     </div>
                     

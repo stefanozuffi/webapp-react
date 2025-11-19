@@ -408,8 +408,14 @@ form input, textarea {
 }
 
 .admin.search-bar {
-  width: 50%;
+  width: 70%;
 }
+
+.rating-search > *{
+  width: 25%;
+  font-size: 14px;
+}
+
 
 
 /* Movie Form */
