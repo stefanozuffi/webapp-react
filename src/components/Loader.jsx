@@ -9,7 +9,7 @@ export default function Loader() {
             <Treadmill
             size="250"
             speed="1.25"
-            color="wheat" 
+            color="red" 
             />
         
         

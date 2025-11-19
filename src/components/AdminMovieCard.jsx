@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import AdminRevCard from "./AdminRevCard"
+import Rating from "./Rating"
 
 
 const server_url = 'http://localhost:3000/api/movies'
@@ -72,6 +73,7 @@ export default function AdminMovieCard({movie, setDeleting, setShowSafety, activ
                                 <p>
                                     {movie.abstract}
                                 </p>
+                                <Rating rating={movie.avg_rating} dir="row"/>
                             </div>
                         </div>
                         

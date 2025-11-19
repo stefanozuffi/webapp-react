@@ -490,6 +490,7 @@ form input, textarea {
   padding: 2px 7px;
   border-radius: 5px 5px 5px 5px;
   width: fit-content;
+  height: fit-content;
   color: black;
   font-family: 'Black Ops One', system-ui;
 }
