@@ -1,4 +1,4 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import MovieForm from "../components/MovieForm";
 import AdminMovieCard from "../components/AdminMovieCard";
@@ -8,12 +8,26 @@ const server_url = 'http://localhost:3000/api/movies'
 export default function AdminPage() {
     const [movies, setMovies] = useState([])
     const [showForm, setShowForm] = useState(false)
+
     const [showSafety, setShowSafety] = useState(false)
     const [deleting, setDeleting] = useState(null)
+
     const [submitSwitch, setSubmitSwitch] = useState(0)
     const [activeAcc, setActiveAcc] = useState(0)
+
     const [filterMovies, setFilterMovies] = useState([])
-    const [searchInput, setSearchInput] = useState('')
+    const [searchInput, setSearchInput] = useState({
+        title: '',
+        director: '',
+        genre: '',
+        filter_range: {
+            isDefined: false, 
+            start_value: null, 
+            end_value: null 
+        }
+    })
+
+    const prevSearchRef = useRef(searchInput);
 
     useEffect(()=> {
         axios.get(server_url)
@@ -26,17 +40,45 @@ export default function AdminPage() {
           });
     }, [submitSwitch])
 
+
     useEffect(() => {
         setFilterMovies(movies)
     },[movies])
 
+
     useEffect(() => {
-        if (searchInput.trim() === '') {
-            setFilterMovies(movies)
-        } else {
-            setFilterMovies(movies.filter(movie => movie.title.toLowerCase().includes(searchInput.toLowerCase())))
+
+        const prev = prevSearchRef.current
+
+        const changedField = Object.keys(searchInput).find(key => searchInput[key] !== prev[key])
+
+        if (isEmpty()) {
+            setFilterMovies(movies) 
         }
+
+        else if (changedField) {
+            setFilterMovies(filter(changedField))
+        }  
+
+        prevSearchRef.current = searchInput
+
     },[searchInput])
+
+
+    //Utilities for advanced Admin-Search
+    function filter(field) {
+     if (field !== 'filter_range') 
+        return movies.filter(movie => movie[field].toLowerCase().includes(searchInput[field].toLowerCase()))
+     
+    }
+
+    function isEmpty() {
+       
+            return Object.keys(searchInput).every(key => {
+                if (key === 'filter_range') return true
+                return searchInput[key].trim() === ''
+            })
+    }
 
 
 
@@ -64,7 +106,7 @@ export default function AdminPage() {
                         <div className="admin search-bar d-flex flex-column align-self-center">
                             <label className='mb-1' style={{color: 'darkred'}} htmlFor="search-bar"> Search Movie </label>
                             <input className='form-control' type="text" id='search-bar'
-                            onChange={(e) => setSearchInput(e.target.value)}/>
+                            onChange={(e) => setSearchInput({...searchInput, title: e.target.value})}/>
                         </div>
                     </div>
                     
