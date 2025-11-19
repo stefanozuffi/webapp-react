@@ -38,7 +38,7 @@ export default function MoviesList() {
         <main>
             <div className="catalogue-head d-flex justify-content-around align-items-center gap-5 flex-wrap">
                 <h2 className='catalogue-title white-title'>Movies Catalogue</h2>
-                <div className="search-bar d-flex flex-column">
+                <div className="search-component search-bar d-flex flex-column">
                     <label className='mb-1' style={{color: 'darkred'}} htmlFor="search-bar"> Search Movie </label>
                     <input className='form-control' type="text" id='search-bar'
                     onChange={(e) => setSearchInput(e.target.value)}/>
