@@ -12,6 +12,8 @@ export default function AdminPage() {
     const [deleting, setDeleting] = useState(null)
     const [submitSwitch, setSubmitSwitch] = useState(0)
     const [activeAcc, setActiveAcc] = useState(0)
+    const [filterMovies, setFilterMovies] = useState([])
+    const [searchInput, setSearchInput] = useState('')
 
     useEffect(()=> {
         axios.get(server_url)
@@ -23,6 +25,21 @@ export default function AdminPage() {
             setError(err.message);
           });
     }, [submitSwitch])
+
+    useEffect(() => {
+        setFilterMovies(movies)
+    },[movies])
+
+    useEffect(() => {
+        if (searchInput.trim() === '') {
+            setFilterMovies(movies)
+        } else {
+            setFilterMovies(movies.filter(movie => movie.title.toLowerCase().includes(searchInput.toLowerCase())))
+        }
+    },[searchInput])
+
+
+
 
     //Handle Delete Movie
     function handleDelete() {
@@ -39,9 +56,20 @@ export default function AdminPage() {
     return(
         <main className="admin-page">
             <div className="container">
-                <div className="admin-header d-flex justify-content-around p-5">
-                    <h2>Admin Environment</h2>
-                    <button className="btn store-movie-btn" onClick={() => setShowForm(true)}> + Add Movie to DB </button>
+                <div className="admin-header d-flex justify-content-around flex-wrap gap-5 p-5">
+
+                    <div className="title-search-ctn d-flex flex-column">
+                        <h1>Admin Environment</h1>
+                    
+                        <div className="admin search-bar d-flex flex-column align-self-center">
+                            <label className='mb-1' style={{color: 'darkred'}} htmlFor="search-bar"> Search Movie </label>
+                            <input className='form-control' type="text" id='search-bar'
+                            onChange={(e) => setSearchInput(e.target.value)}/>
+                        </div>
+                    </div>
+                    
+
+                    <button className="btn store-movie-btn align-self-center" onClick={() => setShowForm(true)}> + Add Movie to DB </button>
                 </div>
 
                 { showForm && <MovieForm setShowForm={setShowForm} submitSwitch={submitSwitch} setSubmitSwitch={setSubmitSwitch}/>}
@@ -49,7 +77,7 @@ export default function AdminPage() {
 
             <div className="list-ctn container my-5">
                 <ul className="admin-movies list-unstyled d-flex flex-column gap-5">
-                    {movies.map(movie => {
+                    {filterMovies.map(movie => {
                         return <AdminMovieCard key={movie.id} movie={movie} setDeleting={setDeleting} setShowSafety={setShowSafety} activeAcc={activeAcc} setActiveAcc={setActiveAcc}/>
                     })}
                 </ul>

@@ -404,7 +404,13 @@ form input, textarea {
 
 .admin-header {
   border-bottom: 3px solid wheat;
+  font-family: 'Black Ops One', system-ui;
 }
+
+.admin.search-bar {
+  width: 50%;
+}
+
 
 /* Movie Form */
 .movie-form-ctn {
@@ -429,6 +435,8 @@ form input, textarea {
   font-family: 'Black Ops One', system-ui;
   border: 5px solid rgb(203, 46, 63);
   color: rgb(203, 46, 63);
+  width: fit-content;
+  height: fit-content;
 }
 
 .store-movie-btn:hover {
