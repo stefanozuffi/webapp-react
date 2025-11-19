@@ -5,7 +5,7 @@ import './Chatbot.css';
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { text: "Ciao! Sono il tuo assistente AI per film. Come posso aiutarti?", sender: 'ai' }
+    { text: "Hi! I'm your AI movie assistant. How can I help you today?", sender: 'ai' }
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -25,33 +25,37 @@ const Chatbot = () => {
     if (!inputMessage.trim() || isLoading) return;
 
     const userMessage = { text: inputMessage, sender: 'user' };
-    setMessages(prev => [...prev, userMessage]);
+    const updatedMessages = [...messages, userMessage];
+    setMessages(updatedMessages);
     setInputMessage('');
     setIsLoading(true);
 
     try {
+      // Send conversation history for context
+      const conversationHistory = messages.map(msg => ({
+        text: msg.text,
+        sender: msg.sender
+      }));
+
       const response = await axios.post('http://localhost:3000/api/chat', {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json', 
-        }, 
-        body: JSON.stringify({ 
-          message: inputMessage, 
-          context: 'film-cinema' 
-        }) 
-      }); 
-      
-      const data = await response.json(); 
-      const aiMessage = { 
-        text: data.reply || "Mi dispiace, non ho capito.", 
-        sender: 'ai' 
-      };
-      setMessages(prev => [...prev, aiMessage]);
+        message: inputMessage,
+        conversationHistory: conversationHistory
+      });
+
+      if (response.data.success) {
+        const aiMessage = {
+          text: response.data.reply,
+          sender: 'ai'
+        };
+        setMessages(prev => [...prev, aiMessage]);
+      } else {
+        throw new Error(response.data.error || 'Failed to get response');
+      }
     } catch (error) {
-      console.error('Errore chat:', error);
-      const errorMessage = { 
-        text: "Errore di connessione con l'AI.", 
-        sender: 'ai' 
+      console.error('Chat error:', error);
+      const errorMessage = {
+        text: error.response?.data?.error || "Sorry, I'm having trouble connecting right now. Please try again.",
+        sender: 'ai'
       };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
@@ -60,7 +64,8 @@ const Chatbot = () => {
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
       sendMessage();
     }
   };
@@ -70,7 +75,7 @@ const Chatbot = () => {
       {/* Chat Button */}
       {!isOpen && (
         <button className="chatbot-toggle-btn" onClick={toggleChat}>
-          <i className="bi bi-suit-club-fill"></i> <span> AI ASSISTANT</span>
+          <i className="bi bi-robot"></i> <span>AI ASSISTANT</span>
         </button>
       )}
 
@@ -78,7 +83,7 @@ const Chatbot = () => {
       {isOpen && (
         <div className="chatbot-window">
           <div className="chatbot-header">
-            <h3>AI Film Assistant</h3>
+            <h3>🎬 AI Movie Assistant</h3>
             <button className="close-btn" onClick={toggleChat}>×</button>
           </div>
 
@@ -90,7 +95,11 @@ const Chatbot = () => {
             ))}
             {isLoading && (
               <div className="message ai loading">
-                ...Typing...
+                <span className="typing-indicator">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
               </div>
             )}
             <div ref={messagesEndRef} />
@@ -102,11 +111,11 @@ const Chatbot = () => {
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Chiedimi informazioni sui film..."
+              placeholder="Ask me about movies..."
               disabled={isLoading}
             />
-            <button onClick={sendMessage} disabled={isLoading}>
-              ▶
+            <button onClick={sendMessage} disabled={isLoading || !inputMessage.trim()}>
+              {isLoading ? '...' : '▶'}
             </button>
           </div>
         </div>

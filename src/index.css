@@ -139,6 +139,13 @@ a {
 
 /* #region CARDLIST */
 
+.catalogue-head {
+  border-bottom: 3px solid white;
+  padding: 1rem;
+  padding-bottom: 3rem;
+  margin: 0 2rem;
+}
+
 .catalogue-title {
   margin-top: 3rem;
   font-size: 3rem;
