@@ -64,7 +64,7 @@ export default function AdminMovieCard({movie, setDeleting, setShowSafety, activ
                {activeAcc === movie.id && 
                
                     <div className="acc-body"> 
-                        <div className="d-flex gap-5 justify-content-center">
+                        <div className="d-flex gap-5 justify-content-center flex-wrap">
                             <div className="admin-image-ctn">
                                 <img className="admin-img" src={imgPath} alt="admin-movie-image"/>
                             </div>

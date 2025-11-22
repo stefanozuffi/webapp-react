@@ -499,6 +499,10 @@ form input, textarea {
   border-bottom: 2px solid red;
 }
 
+.adv-info {
+  min-width: 10rem;
+}
+
 
 
 /* Accordion */
